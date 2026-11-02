@@ -1,0 +1,79 @@
+@Api_HostAddress = http://localhost:5124
+
+### registrar
+POST {{Api_HostAddress}}/api/autenticacao/registrar
+Content-Type: application/json
+
+{
+  "nome": "Ana Souza",
+  "email": "ana@teste.com",
+  "senha": "12345678"
+}
+
+### login
+POST {{Api_HostAddress}}/api/autenticacao/login
+Content-Type: application/json
+
+{
+  "email": "ana@teste.com",
+  "senha": "12345678"
+}
+
+### criar vaga
+POST {{Api_HostAddress}}/api/vagas
+Content-Type: application/json
+
+{
+  "titulo": "Desenvolvedor .NET Junior",
+  "descricao": "APIs REST com C# e SQL Server",
+  "criterios": [
+    { "nome": "Comunicação", "peso": 3 },
+    { "nome": "Conhecimento técnico", "peso": 5 }
+  ]
+}
+
+### listar vagas
+GET {{Api_HostAddress}}/api/vagas
+
+### criar candidato
+POST {{Api_HostAddress}}/api/candidatos
+Content-Type: application/json
+
+{ "nome": "Bruno Lima", "email": "bruno@teste.com" }
+
+### enviar entrevista
+POST {{Api_HostAddress}}/api/entrevistas
+Content-Type: multipart/form-data; boundary=limite
+
+--limite
+Content-Disposition: form-data; name="idVaga"
+
+1
+--limite
+Content-Disposition: form-data; name="idCandidato"
+
+1
+--limite
+Content-Disposition: form-data; name="transcricao"
+
+Entrevistador: Fale um pouco sobre você.
+Candidato: Trabalho com C# há dois anos.
+--limite--
+
+### ver avaliacao
+GET {{Api_HostAddress}}/api/entrevistas/1/avaliacao
+
+### salvar avaliacao
+PUT {{Api_HostAddress}}/api/entrevistas/1/avaliacao
+Content-Type: application/json
+
+{
+  "parecer": "Boa comunicação, precisa melhorar SQL",
+  "notas": [
+    { "idCriterio": 1, "nota": 8 },
+    { "idCriterio": 2, "nota": 6.5 }
+  ]
+}
+
+### comparativo
+GET {{Api_HostAddress}}/api/vagas/1/comparativo

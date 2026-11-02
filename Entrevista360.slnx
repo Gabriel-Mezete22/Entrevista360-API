@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Api/Api.csproj" />
+  <Project Path="Aplicacao/Entrevista360.Aplicacao.csproj" />
+  <Project Path="Dominio/Entrevista360.Dominio.csproj" />
+  <Project Path="Repositorio/Entrevista360.Repositorio.csproj" />
+</Solution>
